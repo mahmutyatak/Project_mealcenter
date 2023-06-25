@@ -1,0 +1,72 @@
+package tests.US_022;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pages.merchantMealscenter.MerchantDashboard;
+import utilities.ConfigReader;
+import utilities.Driver;
+import utilities.ReusableMethods;
+import utilities.TestBaseRapor;
+
+public class TC02202 extends TestBaseRapor {
+
+    /*
+    'https://qa.mealscenter.com/backoffice/auth/login' sayfasına gidilir
+    Merchant Login" menusunde "username" bolumune gecerli username "pasword"
+    bolumune gecerli pasword girilir ve "sign in" bolumune tiklanir
+    Header bolumunde bulunan  Restorant yöneticisi menusunden "profil" menusu tiklanir
+    Profil sayfasinin gorunurlugu test edilir
+    Sayfa Kapatilir
+     */
+
+    MerchantDashboard merchantDashboard = new MerchantDashboard();
+
+    @Test
+    public void test01() {
+
+        //Merchant sayfasinini profil bilgilerinin(adi,soyadı,kullanici adi, e posta,telefon)
+        // goruntelendigi bir sayfa olmalidir
+        extentTest = extentReports.createTest("profil bilgilerinin  görünürlük testi","Gorunurluk testi");
+
+        //'https://qa.mealscenter.com/backoffice/auth/login' sayfasına gidilir
+        Driver.getDriver().get(ConfigReader.getProperty("mealCenterMerchantPageUrl"));
+        extentTest.info("''https://qa.mealscenter.com/backoffice/auth/login' sayfasına gidildi");
+
+        Actions actions = new Actions(Driver.getDriver());
+
+        //Username ve password bilgiler girilir
+        actions.sendKeys(merchantDashboard.usernameBox, ConfigReader.getProperty("LaPalmeraUsername"))
+                .sendKeys(Keys.TAB)
+                .sendKeys(ConfigReader.getProperty("LaPalmeraPassword")).perform();
+        extentTest.info("Username ve password bilgiler girildi");
+
+        //"Sign in" butonuna tıklanir
+        merchantDashboard.signinButton.click();
+        extentTest.info("Sign in butonu  tıklandi");
+
+        //"Profil"  menusu tiklanir
+        merchantDashboard. profileButton.click();
+        extentTest.info("Profil menusu  tıklandi");
+        ReusableMethods.bekle(1);
+
+        //"Profil" dropDown menusu tiklanir
+       actions.click(merchantDashboard.dashboardProfilDropDown).perform();
+        extentTest.info("Profil dropDown menusu tıklandi");
+
+        // Merchant sayfasininin "profil" menusunun gorunurlugu test edilir
+        Assert.assertTrue(merchantDashboard.profilMenuGenelBilgilerMenu.isDisplayed());
+        extentTest.pass(" Restorant yöneticisi menusunden 'profil' menusunun gorunurlugu test edildi");
+
+
+        // profilden cikis yapilir
+        merchantDashboard.logOutMethod();
+        extentTest.info("profilden cikis yapildi");
+
+        // Sayfa Kapatilir
+        Driver.getDriver().close();
+        extentTest.info("Sayfa kapatildi");
+
+    }
+}

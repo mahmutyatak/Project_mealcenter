@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="istenen classlari calistirma">
+    <test name="smoke test">
+
+        <classes>
+            <class name="tests.US_001.TC00103"></class>
+            <class name="tests.US_002.TC00203"></class>
+            <class name="tests.US_004.TC00402"></class>
+            <class name="tests.US_005.TC00504"></class>
+            <class name="tests.US_006.TC00608"></class>
+            <class name="tests.US_014.TC01401"></class>
+            <class name="tests.US_016.TC01602"></class>
+            <class name="tests.US_023.TC02301"></class>
+            <class name="tests.US_024.TC02402"></class>
+            <class name="tests.US_024.TC02403"></class>
+            <class name="tests.US_025.TC02511"></class>
+            <class name="tests.US_031.TC03104"></class>
+            <class name="tests.US_033.TC03303"></class>
+            <class name="tests.US_039.TC03904"></class>
+            <class name="tests.US_039.TC03907"></class>
+        </classes>
+    </test>
+</suite>

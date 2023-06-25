@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="farkli class'lardan ortak group ismine sahip methodlari calistirma">
+
+    <test name="mini regression">
+        <groups>
+            <run>
+                <include name="demo"></include>
+            </run>
+        </groups>
+        <packages>
+            <package name="tests.US_001"></package>
+            <package name="tests.US_002"></package>
+            <package name="tests.US_004"></package>
+            <package name="tests.US_005"></package>
+            <package name="tests.US_006"></package>
+            <package name="tests.US_013"></package>
+            <package name="tests.US_016"></package>
+            <package name="tests.US_023"></package>
+            <package name="tests.US_023"></package>
+            <package name="tests.US_024"></package>
+            <package name="tests.US_025"></package>
+            <package name="tests.US_031"></package>
+            <package name="tests.US_037"></package>
+            <package name="tests.US_039"></package>
+            <package name="tests.US_040"></package>
+        </packages>
+    </test>
+
+</suite>
